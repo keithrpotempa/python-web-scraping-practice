@@ -1,7 +1,7 @@
 # https://thinkdiff.net/python/python-selenium-webdriver-tutorial-how-to-scrap-data-from-javascript-based-website/
 
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
@@ -9,19 +9,28 @@ from selenium.webdriver.support.expected_conditions import presence_of_element_l
 import time
 import sys
 
+# from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+
 url = 'https://www.brainyquote.com/'
-chrome_driver_path = '/usr/bin/chromedriver'
+firefox_driver_path = '/usr/bin/geckodriver'
 
 # create an instance of Options class
-chrome_options = Options()
+firefox_options = Options()
+firefox_options.headless = True
+
+# cap = DesiredCapabilities().FIREFOX
+# cap["marionette"] = False
 
 # make it headless
-chrome_options.add_argument('--headless')
+# firefox_options.add_argument('--headless')
 
-# create an instance of webdriver.Chrome class
+# create an instance of webdriver.Firefox class
 # (this will be our web browser)
-webdriver = webdriver.Chrome(
-  executable_path=chrome_driver_path, options=chrome_options
+webdriver = webdriver.Firefox(
+  # firefox_binary=binary,
+  # capabilities=cap,
+  executable_path=firefox_driver_path, 
+  options=firefox_options
 )
 
 # If from the terminal we pass any keyword, 
